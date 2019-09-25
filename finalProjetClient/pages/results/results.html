@@ -1,0 +1,73 @@
+<head>
+    <!-- load angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+    <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+
+    <!-- load app -->
+    <script src="app.js"></script>
+
+    <!-- load controllers -->
+    <script src="resultsController.js"></script>
+
+
+
+
+</head>
+<!-- css -->
+<style>
+    .attractionStyle {
+        display: inline-block;
+        background-color: rgba(206, 233, 224, 0.562);
+        width: 250px;
+        height: 250px;
+        text-align: center;
+    }
+
+    .attractionImg {
+        height: 150px;
+        width: 200px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .starImg {
+        height: 30px;
+        width: 30px;
+    }
+
+    .saveList {
+        height: 50px;
+        font-size: 24px;
+    }
+</style>
+<body ng-app="myApp" ng-controller="resultsCtrl">
+    <span ng-show="resultsCtrl.results.length!=0">
+<h2>HERE ARE THE POINTS OF VIEW YOU WERE LOOKING FOR </h2>
+<br>
+</span>
+<span ng-show="resultsCtrl.results.length==0">
+Sorry,Try Another Term 
+</span>
+<input class="saveList" ng-click="resultsCtrl.orderByRating()" ng-disabled="" type="submit" id="submitSaveList" value="order by rating">
+<br>   
+<br>
+
+<span class="attractionStyle" ng-repeat="attraction in resultsCtrl.results | orderBy : resultsCtrl.condition">
+        <span>
+            <span ng-click="resultsCtrl.webService.showAttraction(attraction.attractionName)">
+                <div ng-bind="attraction.attractionName"></div>
+                <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+            </span>
+       
+            <p ng-model="attraction.isFavorite" ng-show="(!(attraction.isFavorite))&&(currUser!='guest')"
+                ng-click="resultsCtrl.addFavorite(attraction.attractionName,attraction.picture)">
+                LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png">
+            </p>
+            <p ng-model="attraction.isFavorite" ng-show="attraction.isFavorite&&(currUser!='guest')"
+                ng-click="resultsCtrl.removeFavorite(attraction.attractionName,attraction.picture)">
+                UNSAVE IT <img class="starImg" ng-src=",./../resources/unstar.png">
+            </p>
+        </span>
+    </span>
+</body>

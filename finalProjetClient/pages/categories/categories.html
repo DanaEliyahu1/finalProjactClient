@@ -1,0 +1,28 @@
+<head>
+  <!-- load angular -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+  <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+
+  <!-- load app -->
+  <script src="app.js"></script>
+
+  <!-- load controllers -->
+  <script src="categoryController.js"></script>
+
+
+
+
+</head>
+<!-- css -->
+<style>
+    
+</style>
+
+<h2>CATEGORIES</h2>
+<!-- display all categories -->
+<body ng-app="myApp" ng-controller="categoryCtrl">
+    <span ng-repeat="category in categoryCtrl.categories">
+       <span style="border:2px solid rgb(245, 247, 238); background-color: gray; font-size: 25px" ng-click="categoryCtrl.openResults(category.categoryName)" >{{category.categoryName}}</span> 
+           <!--<span ng-click="categoryCtrl.a(category.categoryName)" >{{category.categoryName}}</span>-->
+    </span>
+</body>

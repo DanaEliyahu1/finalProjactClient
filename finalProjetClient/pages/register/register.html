@@ -1,0 +1,67 @@
+<body>
+
+    <form id="registerform" ng-submit="registerCtrl.register();" method="post" enctype="text/plain">
+        UserName:
+        <br>
+        <input type="text" id="UserName" name="UserName">
+        <br> Password:
+        <br>
+        <input type="password" id="Password" name="Password">
+        <br> FirstName:
+        <br>
+        <input type="text" id="FirstName" name="FirstName">
+        <br> LastName:
+        <br>
+        <input type="text" id="LastName" name="LastName">
+        <br> Email:
+        <br>
+        <input type="text" id="Email" name="Email">
+        <br> BirthDate:
+        <br>
+        <input type="date" id="BirthDate" name="BirthDate">
+        <br> City:
+        <br>
+        <input type="text" id="City" name="City">
+        <br> Country:
+        <br>
+        <select name="Country" id="Country">
+                <option> Australia     </option>
+                <option>  Bolivia    </option>
+                <option>  China    </option>
+                <option>  Denemark   </option>
+                <option>  Israel    </option>
+                <option>  Latvia    </option>
+                <option>  Monaco    </option>
+                <option>  August    </option>
+                <option>  Norway    </option>
+                <option>  Panama    </option>
+                <option>  Switzerlind    </option>
+                <option>  USA    </option>
+            </select>
+        <br> Question 1:
+        <select name="Q1" id="Q1">
+            <option ng-repeat="Question in registerCtrl.questions" id="{{Question.qid}}" value="{{Question.question}}">
+                {{Question.question}}
+            </option>
+        </select>
+        <br> Answer 1:
+        <input type="text" id="ans1" name="ans1">
+        <br> Question 2:
+        <select name="Q2" id="Q2">
+            <option ng-repeat="Question in registerCtrl.questions" id="{{Question.qid}}" value="{{Question.question}}">
+                {{Question.question}}
+            </option>
+        </select>
+        <br> Answer 2:
+        <input type="text" id="ans2" name="ans2">
+        <br> Choose two or more categories
+        <span ng-repeat="Category in registerCtrl.categories">
+            <input type="checkbox" ng-model=registerCtrl.isChecked[$index] id="{{Category}}" value="{{Category}}">
+            {{Category.categoryName}}
+        </span>
+
+        <br>
+        <input type="submit" id="Send" value="Send">
+
+    </form>
+</body>

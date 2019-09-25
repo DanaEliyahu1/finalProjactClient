@@ -1,0 +1,76 @@
+<head>
+    <!-- load angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.js"></script>
+    <script src="https://code.angularjs.org/1.7.8/angular-route.js"></script>
+
+    <!-- load app -->
+    <script src="app.js"></script>
+
+    <!-- load controllers -->
+    <script src="favoritesController.js"></script>
+
+
+
+
+</head>
+<!-- css -->
+<style>
+    .attractionStyle {
+        display: inline-block;
+        background-color: rgba(206, 233, 224, 0.562);
+        width: 250px;
+        height: 250px;
+        text-align: center;
+    }
+
+    .attractionImg {
+        height: 150px;
+        width: 200px;
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .starImg {
+        height: 15px;
+        width: 15px;
+    }
+
+    .saveList {
+        height: 50px;
+        font-size: 24px;
+    }
+</style>
+<body ng-model="currUser" ng-show="currUser!='guest'" ng-app="myApp" ng-controller="favoritesCtrl" ng-show="currUser!='guest'">
+<h2>YOUR CURRENT SAVED POINTS OF VIEW </h2>
+<br>
+<input class="saveList" ng-click="favoritesCtrl.saveAttractions()" ng-disabled="" type="submit" id="submitSaveList" value="save your favorite attractions list!">
+<br> <br>
+<input class="saveList" ng-click="favoritesCtrl.orderByCategory()" ng-disabled="" type="submit" id="submitSaveList" value="order by category">
+<input class="saveList" ng-click="favoritesCtrl.orderByRating()" ng-disabled="" type="submit" id="submitSaveList" value="order by rating">
+<!-- display all categories -->
+
+
+<br>
+<br>
+<span class="attractionStyle" ng-repeat='attraction in favoritesCtrl.favorites | orderBy : favoritesCtrl.condition' >
+    
+        <span>
+            <span ng-click="favoritesCtrl.webService.showAttraction(attraction.attractionName)">
+                <div ng-bind="attraction.attractionName"></div>
+                <img class="attractionImg" ng-src=",./../{{attraction.picture}}">
+               
+            </span>
+            <!--  <span ng-click= "resultsCtrl.a(attraction.attractionName)">-->
+            <input type="button" ng-show="favoritesCtrl.condition=='+rank'" ng-click="favoritesCtrl.swap(attraction.attractionName)" value="<<">
+            <p ng-model="attraction.isFavorite" ng-show="(!(attraction.isFavorite))&&(currUser!='guest')"
+                ng-click="favoritesCtrl.addFavorite(attraction.attractionName,attraction.picture)">
+                LIKE IT? SAVE IT <img class="starImg" ng-src=",./../resources/star.png">
+            </p>
+            <p ng-model="attraction.isFavorite" ng-show="attraction.isFavorite&&(currUser!='guest')"
+                ng-click="favoritesCtrl.removeFavorite(attraction.attractionName,attraction.picture)">
+                UNSAVE IT <img class="starImg" ng-src=",./../resources/unstar.png">
+            </p>
+        </span>
+    </span>
+</body>
