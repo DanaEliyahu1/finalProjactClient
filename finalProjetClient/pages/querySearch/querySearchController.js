@@ -1,5 +1,5 @@
 angular.module("DoChaP")
-.controller("querySearchController", function ($scope) {
+.controller("querySearchController", function ($scope,webService) {
     // button click count
     self = this;
 
@@ -26,7 +26,9 @@ angular.module("DoChaP")
     self.queryHandler= function(query){
         var re=new RegExp("^[a-zA-Z0-9]");
         if(re.test(query)){
-            webService.queryHandler(query);
+            webService.queryHandler(query).then(function (response){
+                window.alert(JSON.stringify(response))
+            });
         }
         else{
             window.alert("Please Fix Your Query");

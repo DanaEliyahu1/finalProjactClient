@@ -13,17 +13,7 @@
 
 
     <script src="webService.js"></script>
-    <script src="loginController.js"></script>
-    <script src="searchController.js"></script>
-    <script src="pages/about/aboutController.js"></script>
-    <script src="pages/poi/poiController.js"></script>
-    <script src="pages/categories/categoryController.js"></script>
-    <script src="pages/favorites/favoritesController.js"></script>
-    <script src="pages/home/homeController.js"></script>
-    <script src="pages/showAttraction/showAttraction.js"></script>
-    <script src="pages/register/registerController.js"></script>
-    <script src="pages/results/resultsController.js"></script>
-    <script src="pages/forgotPassword/forgotPasswordController.js"></script>
+    <script src="pages/querySearch/querySearchController.js"></script>
 
 
     <style>
@@ -47,86 +37,16 @@
 
 </head>
 
-<body ng-app="myApp" ng-init="$window.sessionStorage.setItem('username','guest')">
+<body ng-app="DoChaP" ng-init="$window.sessionStorage.setItem('username','guest')">
     <!-- the website -->
     <text style="font-size: 90px;">The city of Barcelona</text>
+    <a href="#!querySearch">QuerySearch</a>
     <br>
     <br>
     <br>
     <!-- <span ng-bind="Mainctrl.helloMsg"></span> -->
     <!-- menu -->
-    <table align="center" ng-model="currUser" ng-controller="loginController as loginCtrl"
-        style="font-size:  18px;background-color:rgb(75, 204, 226);">
-        <tr>
-        </tr>
-        <th>
-            hello
-            <text ng-model="currUser">{{currUser}}</text>
-            <span ng-show="currUser=='guest'"><br>
-                <br>
-                 You don't have an account ? JOIN NOW!! REGISTER HERE! 
-            </span>
-           
-        </th>
-        <th>
-            <span ng-show="currUser=='guest'">
-                <!-- LOG IN -->
-                <form name="loginform" ng-submit="loginCtrl.login()">
-                    username:
-                    <input id='username' name="username" ng-model="username" required ng-minlength="3">
-                    <br> password:
-                    <input id='password' type="password" name="password" ng-model="password">
-                    <br>
-                    <input ng-disabled="" type="submit" id="submitLogIn" value="LOG IN">
-                    <span>
-                        <a href="#!forgotPassword">Forgot Password?</a>
-                    </span>
-                </form>
-            </span>
-        </th>
-        <th>
-            <span ng-show="currUser!='guest'">
-                <input ng-disabled="" ng-click="loginCtrl.logOut()" type="submit" id="submitLogOut" value="LOG OUT">
-            </span>
-        </th>
-        <tr>
-
-            <th>
-                <span>
-                    <a href="#!">Home</a>
-                </span>
-                <span>
-                    <a href="#!about">About</a>
-                </span>
-                <span>
-                    <a href="#!categories">Categories</a>
-                </span>
-
-                <span ng-show="currUser=='guest'">
-                    <span>
-                        <a href="#!register">register</a>
-                    </span>
-                
-                </span>
-                <span ng-show="true">
-                    <span>
-                        <a href="#!favorites" ng-show="currUser!='guest'">your favorite attractions(<span
-                                ng-model="favoriteCount">{{favoriteCount}}</span>) 
-                                <img src="/resources/icon.png" width="20" height="20"></a>
-                    </span>
-                </span>
-
-            </th>
-            <th>
-                search for a point of view:
-                <br>
-                <span ng-controller="searchController">
-                    <input name="searchText" id="search" ng-model="searchText" required ng-minlength="1">
-                    <input ng-disabled="" ng-click="search()" type="submit" id="submitSearch" value="search">
-                </span>
-            </th>
-        </tr>
-    </table>
+  
 
 
     <!-- This section changes as the hashbang changes -->

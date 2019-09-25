@@ -1,26 +1,22 @@
 
 
 
-angular.module("myApp").service("webService", function ($http, $window, $rootScope) {
-    this.queryHendler = function (username, password) {
+angular.module("DoChaP").service("webService", function ($http, $window, $rootScope) {
+    this.queryHandler = function (query) {
         var req = {
-            method: 'POST',
-            url: 'http://localhost:3000/private/login',
-            data: JSON.stringify({
-                "username": username,
-                "password": password
-            }),
-            headers: { 'Content-Type': 'application/json' }
+            method: 'GET',
+            url: 'http://localhost:3000/querySearch/' + query ,
+            
         };
         return $http(req);
 
 
     }
-    this.getCategories = function () {
+    this.fileHandler = function () {
 
         var req = {
             method: 'GET',
-            url: 'http://localhost:3000/view/getCategories'
+            url: 'http://localhost:3000/fileSearch'
 
         }
         return $http(req)
