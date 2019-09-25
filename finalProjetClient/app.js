@@ -50,6 +50,13 @@ app.config(function ($routeProvider) {
             controller: 'forgotPasswordController as forgotPasswordCtrl'
         })
 
+        .when('/querySearch',{
+            templateUrl: 'pages/querySearch/querySearch.html',
+            controller: 'querySearchController as querySearchCtrl'
+        
+
+        })
+
         // other
         .otherwise({ redirectTo: '/' });
 

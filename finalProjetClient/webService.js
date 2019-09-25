@@ -2,7 +2,7 @@
 
 
 angular.module("myApp").service("webService", function ($http, $window, $rootScope) {
-    this.login = function (username, password) {
+    this.queryHendler = function (username, password) {
         var req = {
             method: 'POST',
             url: 'http://localhost:3000/private/login',
